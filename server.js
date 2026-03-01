@@ -135,8 +135,19 @@ app.post("/api/state", async (req, res) => {
   }
 });
 
-// 静的ファイル: フロントエンド
-app.use(express.static(path.join(ROOT_DIR, "public")));
+// 静的ファイル: ルートに置いた index / app.js / styles.css（GitHub Pages 用）
+app.get("/", (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, "index.html"));
+});
+app.get("/index.html", (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, "index.html"));
+});
+app.get("/app.js", (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, "app.js"));
+});
+app.get("/styles.css", (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, "styles.css"));
+});
 // 静的ファイル: カード画像 (例: /card/pikachu.png)
 app.use("/card", express.static(CARD_DIR));
 
@@ -197,9 +208,9 @@ app.get("/api/cards", (req, res) => {
   });
 });
 
-// ルートは index.html を返す
+// SPA: その他は index.html を返す
 app.get("*", (req, res) => {
-  res.sendFile(path.join(ROOT_DIR, "public", "index.html"));
+  res.sendFile(path.join(ROOT_DIR, "index.html"));
 });
 
 initDb()
