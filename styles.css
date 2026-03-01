@@ -88,6 +88,13 @@ body {
   margin-bottom: 20px;
 }
 
+.main-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
 .builder-save-row {
   display: flex;
   align-items: center;
@@ -711,6 +718,25 @@ input[type="text"] {
   height: var(--card-pool-height);
 }
 
+/* オーバーレイのカードプールでもモノクロ化（スマホ幅で表示時） */
+#pool-modal-grid .card.selected {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  filter: none;
+}
+#pool-modal-grid .card:not(.selected) {
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+#pool-modal-grid .card img {
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+#pool-modal-grid .card.selected img {
+  filter: none;
+  opacity: 1;
+}
+
 /* オーバーレイ表示中は背面をスクロールさせない */
 body.pool-modal-open {
   overflow: hidden;
@@ -727,6 +753,15 @@ body.pool-modal-open {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.delete-confirm-btn {
+  color: #d7003a;
+  border-color: #d7003a;
+  background: transparent;
+}
+.delete-confirm-btn:hover {
+  background: rgba(215, 0, 58, 0.1);
 }
 
 @media (max-width: 900px) {

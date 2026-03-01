@@ -142,6 +142,13 @@ function setupNavigation() {
     switcher: document.getElementById("view-switcher")
   };
   const title = document.getElementById("view-title");
+  const copyDeckBtn = document.getElementById("copy-deck-btn");
+
+  function updateCopyDeckBtnVisibility() {
+    if (!copyDeckBtn) return;
+    const decksActive = views.decks && views.decks.classList.contains("active");
+    copyDeckBtn.style.display = decksActive ? "" : "none";
+  }
 
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -157,6 +164,8 @@ function setupNavigation() {
       if (view === "builder") title.textContent = "デッキ編集";
       if (view === "switcher") title.textContent = "デッキ入れ替え";
 
+      updateCopyDeckBtnVisibility();
+
       if (view === "builder") {
         renderBuilder();
       } else if (view === "switcher") {
@@ -164,6 +173,8 @@ function setupNavigation() {
       }
     });
   });
+
+  updateCopyDeckBtnVisibility();
 }
 
 // ----- デッキ一覧 -----
@@ -204,6 +215,10 @@ function renderDeckList() {
           <span class="deck-action-icon">👁️</span>
           <span class="deck-action-label">Check</span>
         </button>
+        <button class="secondary-btn deck-delete">
+          <span class="deck-action-icon">🗑️</span>
+          <span class="deck-action-label">Delete</span>
+        </button>
         <button class="${activateClass}">
           <span class="deck-action-label">Active</span>
         </button>
@@ -216,6 +231,10 @@ function renderDeckList() {
 
     card.querySelector(".deck-view").addEventListener("click", () => {
       openDeckViewer(deck);
+    });
+
+    card.querySelector(".deck-delete").addEventListener("click", () => {
+      openDeleteDeckModal(deck);
     });
 
     const activateBtn = card.querySelector(".deck-activate");
@@ -409,6 +428,103 @@ function setupDeckViewer() {
     });
 
     modal.classList.remove("hidden");
+  };
+}
+
+// ----- デッキ削除確認モーダル -----
+let deckToDelete = null;
+
+function setupDeleteDeckModal() {
+  const modal = document.getElementById("delete-deck-modal");
+  const messageEl = document.getElementById("delete-deck-message");
+  const yesBtn = document.getElementById("delete-deck-yes");
+  const noBtn = document.getElementById("delete-deck-no");
+
+  function close() {
+    modal.classList.add("hidden");
+    deckToDelete = null;
+  }
+
+  noBtn.addEventListener("click", close);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+
+  yesBtn.addEventListener("click", () => {
+    if (!deckToDelete) {
+      close();
+      return;
+    }
+    const id = deckToDelete.id;
+    const idx = decks.findIndex((d) => d.id === id);
+    if (idx !== -1) decks.splice(idx, 1);
+    const activeIdx = activeDeckIds.indexOf(id);
+    if (activeIdx !== -1) activeDeckIds.splice(activeIdx, 1);
+    delete builderWorking[id];
+    if (builderSelectedDeckId === id) {
+      builderSelectedDeckId = decks.length ? decks[0].id : null;
+    }
+    saveState();
+    renderDeckList();
+    renderBuilder();
+    renderSwitcher();
+    close();
+  });
+
+  window.openDeleteDeckModal = (deck) => {
+    deckToDelete = deck;
+    messageEl.textContent = `本当に「${deck.name}」を削除しますか？`;
+    modal.classList.remove("hidden");
+  };
+}
+
+// ----- デッキコピー元選択モーダル -----
+function setupCopyDeckModal() {
+  const modal = document.getElementById("copy-deck-modal");
+  const selectEl = document.getElementById("copy-deck-select");
+  const applyBtn = document.getElementById("copy-deck-apply");
+  const cancelBtn = document.getElementById("copy-deck-cancel");
+
+  function close() {
+    modal.classList.add("hidden");
+  }
+
+  cancelBtn.addEventListener("click", close);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+
+  applyBtn.addEventListener("click", () => {
+    const deckId = selectEl.value;
+    const deck = decks.find((d) => d.id === deckId);
+    if (!deck) {
+      close();
+      return;
+    }
+    const newId = `deck_${Date.now()}`;
+    const newDeck = {
+      id: newId,
+      name: "コピー: " + deck.name,
+      cards: [...deck.cards],
+      energyCount: getEnergyCount(deck)
+    };
+    decks.push(newDeck);
+    saveState();
+    renderDeckList();
+    renderBuilder();
+    renderSwitcher();
+    close();
+  });
+
+  window.openCopyDeckModal = () => {
+    selectEl.innerHTML = "";
+    decks.forEach((d) => {
+      const opt = document.createElement("option");
+      opt.value = d.id;
+      opt.textContent = d.name;
+      selectEl.appendChild(opt);
+    });
+    if (decks.length) modal.classList.remove("hidden");
   };
 }
 
@@ -1039,6 +1155,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupNavigation();
   setupDeckModal();
   setupDeckViewer();
+  setupDeleteDeckModal();
+  setupCopyDeckModal();
+
+  const copyDeckBtn = document.getElementById("copy-deck-btn");
+  if (copyDeckBtn) {
+    copyDeckBtn.addEventListener("click", () => {
+      if (typeof window.openCopyDeckModal === "function") window.openCopyDeckModal();
+    });
+  }
+
   renderDeckList();
   renderBuilder();
   renderSwitcher();

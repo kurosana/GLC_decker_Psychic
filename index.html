@@ -20,7 +20,10 @@
       <main class="main">
         <header class="main-header">
           <h1 id="view-title">デッキ一覧</h1>
-          <button id="create-deck-btn" class="primary-btn">＋ 新しいデッキを作成</button>
+          <div class="main-header-actions">
+            <button id="create-deck-btn" class="primary-btn">＋ 新しいデッキを作成</button>
+            <button id="copy-deck-btn" class="secondary-btn" style="display:none;">デッキコピー</button>
+          </div>
         </header>
 
         <!-- デッキ一覧ビュー -->
@@ -117,6 +120,31 @@
           </div>
         </section>
       </main>
+    </div>
+
+    <!-- デッキ削除確認モーダル -->
+    <div id="delete-deck-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="delete-deck-message">本当にこのデッキを削除しますか？</h2>
+        <div class="modal-actions">
+          <button id="delete-deck-no" class="secondary-btn">いいえ</button>
+          <button id="delete-deck-yes" class="primary-btn delete-confirm-btn">はい</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- デッキコピー元選択モーダル -->
+    <div id="copy-deck-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>コピーするデッキを選んでください</h2>
+        <label class="modal-field">
+          <select id="copy-deck-select"></select>
+        </label>
+        <div class="modal-actions">
+          <button id="copy-deck-cancel" class="secondary-btn">キャンセル</button>
+          <button id="copy-deck-apply" class="primary-btn">コピーする</button>
+        </div>
+      </div>
     </div>
 
     <!-- デッキ作成 / 編集モーダル -->
