@@ -1,6 +1,18 @@
 // ローカルストレージキー
 const STORAGE_KEY = "glc_decks_v1";
 
+// GitHub Pages 用ベースパス（リポジトリ名）。ローカル Node のときは "/"
+function getBasePath() {
+  const p = location.pathname;
+  if (!p || p === "/") return "/";
+  const base = p.endsWith("/") ? p : p.replace(/\/[^/]*$/, "/");
+  return base.startsWith("/") ? base : "/" + base;
+}
+
+function getCardImageUrl(file) {
+  return getBasePath() + "card/" + file;
+}
+
 let decks = [];
 let activeDeckIds = [];
 let cardPool = [];
@@ -56,16 +68,26 @@ function saveState() {
   );
 }
 
-// カード API から画像一覧を取得
+// カード一覧を取得（Node の /api/cards または GitHub Pages 用 cards.json）
 async function loadCards() {
+  const base = getBasePath();
   try {
     const res = await fetch("/api/cards");
+    if (res.ok) {
+      const data = await res.json();
+      cardPool = data.cards || [];
+      cardCategories = data.categories || [];
+      if (data.energyCard) energyCardFile = data.energyCard;
+      return;
+    }
+  } catch (_) {}
+  try {
+    const res = await fetch(base + "cards.json");
+    if (!res.ok) throw new Error("cards.json not found");
     const data = await res.json();
     cardPool = data.cards || [];
     cardCategories = data.categories || [];
-    if (data.energyCard) {
-      energyCardFile = data.energyCard;
-    }
+    if (data.energyCard) energyCardFile = data.energyCard;
   } catch (e) {
     console.error("カード一覧の取得に失敗しました", e);
     cardPool = [];
@@ -375,7 +397,7 @@ function setupDeckViewer() {
         badge = `<span class="card-badge">エネ ×${energyNum}</span>`;
       }
       div.innerHTML = `
-        <img src="/card/${file}" alt="${file}" />
+        <img src="${getCardImageUrl(file)}" alt="${file}" />
         ${badge}
       `;
       grid.appendChild(div);
@@ -589,7 +611,7 @@ function renderBuilder() {
       if (isEnergy) {
         const count = working.energyCount || 0;
         div.innerHTML = `
-          <img src="/card/${file}" alt="${file}" />
+          <img src="${getCardImageUrl(file)}" alt="${file}" />
           <div class="energy-hover-panel">
             <div>基本エネルギー枚数</div>
             <div class="energy-controls">
@@ -615,7 +637,7 @@ function renderBuilder() {
             renderBuilder();
           });
       } else {
-        div.innerHTML = `<img src="/card/${file}" alt="${file}" />`;
+        div.innerHTML = `<img src="${getCardImageUrl(file)}" alt="${file}" />`;
       }
 
       div.addEventListener("click", () => toggleCard(working, file));
@@ -770,7 +792,7 @@ function renderBuilder() {
       div.className = "card selected deck-card-draggable";
       div.draggable = true;
       div.dataset.index = String(index);
-      div.innerHTML = `<img src="/card/${file}" alt="${file}" />`;
+      div.innerHTML = `<img src="${getCardImageUrl(file)}" alt="${file}" />`;
       div.addEventListener("click", (e) => {
         if (e.target.closest("img")) {
           const idx = working.cards.indexOf(file);
@@ -811,7 +833,7 @@ function renderBuilder() {
       const div = document.createElement("div");
       div.className = "card selected";
       div.innerHTML = `
-        <img src="/card/${energyCardFile}" alt="${energyCardFile}" />
+        <img src="${getCardImageUrl(energyCardFile)}" alt="${energyCardFile}" />
         <span class="card-badge">エネ ×${energyNum}</span>
       `;
       div.addEventListener("click", () => {
@@ -949,7 +971,7 @@ function renderSwitcher() {
         const div = document.createElement("div");
         div.className = "card selected";
         div.innerHTML = `
-          <img src="/card/${energyCardFile}" alt="${energyCardFile}" />
+          <img src="${getCardImageUrl(energyCardFile)}" alt="${energyCardFile}" />
           <span class="card-badge">エネ ×${needRemoveEnergy}</span>
         `;
         removeContainer.appendChild(div);
@@ -957,7 +979,7 @@ function renderSwitcher() {
       toRemove.forEach((file) => {
         const div = document.createElement("div");
         div.className = "card";
-        div.innerHTML = `<img src="/card/${file}" alt="${file}" />`;
+        div.innerHTML = `<img src="${getCardImageUrl(file)}" alt="${file}" />`;
         removeContainer.appendChild(div);
       });
     }
@@ -967,7 +989,7 @@ function renderSwitcher() {
         const div = document.createElement("div");
         div.className = "card selected";
         div.innerHTML = `
-          <img src="/card/${energyCardFile}" alt="${energyCardFile}" />
+          <img src="${getCardImageUrl(energyCardFile)}" alt="${energyCardFile}" />
           <span class="card-badge">エネ ×${needAddEnergy}</span>
         `;
         addContainer.appendChild(div);
@@ -975,7 +997,7 @@ function renderSwitcher() {
       toAdd.forEach((file) => {
         const div = document.createElement("div");
         div.className = "card";
-        div.innerHTML = `<img src="/card/${file}" alt="${file}" />`;
+        div.innerHTML = `<img src="${getCardImageUrl(file)}" alt="${file}" />`;
         addContainer.appendChild(div);
       });
     }

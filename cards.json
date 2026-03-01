@@ -1,0 +1,242 @@
+{
+  "cards": [
+    {
+      "path": "1.ポケモン/035080_P_MIMIKKYU.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/037261_P_GIRATEINA.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/037265_P_MAIKA.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/041220_P_ERUREIDO.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/041997_P_RARUTOSU.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/044041_P_KIRURIA.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/044206_P_NEITEIO.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/049076_P_TETSUNOIWAO.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/超/028536_P_BARIYADO.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/超/030879_P_NEITEI.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/超/036846_P_KARAMANERO.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "1.ポケモン/超/036935_P_ZUGADON.jpg",
+      "category": "1.ポケモン"
+    },
+    {
+      "path": "2.グッズ/031204_T_BATORUSACHA.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/033199_T_HAKASENOTEGAMI.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/036443_T_FIRUDOBUROA.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/036446_T_RESUKYUTANKA.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/036863_T_MISUTERITOREJA.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/037157_T_BOUKENNOKABAN.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/038048_T_RISETTOSUTANPU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/040282_T_KAISHIXYUUNETTO.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/041118_T_SHINKANOOKOU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/041331_T_KUIKKUBORU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/042247_T_REBERUBORU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/042401_T_HISUINOHEBIBORU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/043820_T_NESUTOBORU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/044044_T_ANANUKENOHIMO.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/044174_T_KIRINOSUISHIXYOU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/048299_T_WANDAPATCHI.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/049349_T_ANFUEASUTANPU.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/049364_T_NAKAYOSHIPOFUIN.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/049386_T_YORUNOTANKA.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "2.グッズ/049703_T_POKEPADDO.jpg",
+      "category": "2.グッズ"
+    },
+    {
+      "path": "3.サポート/034651_T_OKARUTOMANIA.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/034655_T_SENPAITOKOUHAI.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/035596_T_RUZAMINE.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/036621_T_GUZUMA.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/037426_T_.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/038135_T_GUZUMAHARA.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/041131_T_MARII.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/044060_T_KIBANA.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/044378_T_RIPPU.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/047212_T_PEPA.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/047285_T_NANJIXYAMO.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/049434_T_TOUKO.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "3.サポート/049609_T_RIRIENOKESSHIN.jpg",
+      "category": "3.サポート"
+    },
+    {
+      "path": "4.ポケモンのどうぐ/031974_T_KARUISHI.jpg",
+      "category": "4.ポケモンのどうぐ"
+    },
+    {
+      "path": "4.ポケモンのどうぐ/036701_T_UTANBODO.jpg",
+      "category": "4.ポケモンのどうぐ"
+    },
+    {
+      "path": "4.ポケモンのどうぐ/044129_T_WAZAMASHINYAMIUCHI.jpg",
+      "category": "4.ポケモンのどうぐ"
+    },
+    {
+      "path": "4.ポケモンのどうぐ/047892_T_WAZAMASHINEVUORIXYUSHIXYON.jpg",
+      "category": "4.ポケモンのどうぐ"
+    },
+    {
+      "path": "4.ポケモンのどうぐ/049404_T_FUUSEN.jpg",
+      "category": "4.ポケモンのどうぐ"
+    },
+    {
+      "path": "5.スタジアム/033839_T_PARARERUSHITEI.jpg",
+      "category": "5.スタジアム"
+    },
+    {
+      "path": "5.スタジアム/037431_T_JIGENNOTANI.jpg",
+      "category": "5.スタジアム"
+    },
+    {
+      "path": "6.特殊エネ/033210_E_MISUTERIENERUGI.jpg",
+      "category": "6.特殊エネ"
+    },
+    {
+      "path": "6.特殊エネ/036460_E_KAUNTAENERUGI.jpg",
+      "category": "6.特殊エネ"
+    },
+    {
+      "path": "6.特殊エネ/037377_E_RISAIKURUENERUGI.jpg",
+      "category": "6.特殊エネ"
+    },
+    {
+      "path": "6.特殊エネ/049712_E_TEREPASUCHIXYOUENERUGI.jpg",
+      "category": "6.特殊エネ"
+    },
+    {
+      "path": "7.基本エネ/psychic_energy.png",
+      "category": "7.基本エネ"
+    }
+  ],
+  "energyCard": "7.基本エネ/psychic_energy.png",
+  "categories": [
+    "1.ポケモン",
+    "2.グッズ",
+    "3.サポート",
+    "4.ポケモンのどうぐ",
+    "5.スタジアム",
+    "6.特殊エネ",
+    "7.基本エネ"
+  ]
+}

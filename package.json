@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js","generate-cards":"node scripts/generate-cards-json.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
