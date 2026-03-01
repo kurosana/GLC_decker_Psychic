@@ -5,8 +5,13 @@ const STORAGE_KEY = "glc_decks_v1";
 function getBasePath() {
   const p = location.pathname;
   if (!p || p === "/") return "/";
-  const base = p.endsWith("/") ? p : p.replace(/\/[^/]*$/, "/");
-  return base.startsWith("/") ? base : "/" + base;
+  if (p.endsWith("/")) return p;
+  // パスが "/GLC_decker_Psychic" のときはそのまま末尾に / を付ける
+  // "/GLC_decker_Psychic/index.html" のときは最後のセグメントを除いて /
+  if (p.indexOf("/", 1) !== -1) {
+    return p.replace(/\/[^/]*$/, "") + "/";
+  }
+  return p + "/";
 }
 
 function getCardImageUrl(file) {
